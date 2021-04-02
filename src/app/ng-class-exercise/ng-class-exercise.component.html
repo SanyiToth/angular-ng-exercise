@@ -1,0 +1,16 @@
+<ng-template #passengersTpl>
+  <ul>
+    <li *ngFor="let passenger of passengers ;let i=index;" [style.backgroundColor]="i%2? colorOddInEl: colorEvenInEl">
+      <span>{{isCheckedIn(i) | emojify}}</span>
+      {{i}}: Name:{{passenger.fullName}}
+      dob:{{passenger.dateOfBirth|date:'YYYY.MM.d'}}{{passenger.dateOfBirth|relativeTime }}
+      gender:{{passenger.gender}}
+    </li>
+  </ul>
+</ng-template>
+
+<ng-template #noPassengersTpl>
+  <h2>{{noPassengers}}</h2>
+</ng-template>
+
+<div *ngIf="passengers.length>0 then passengersTpl;else noPassengersTpl"></div>
